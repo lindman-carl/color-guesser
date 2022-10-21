@@ -14,16 +14,18 @@ const App = () => {
   const [correctAnswers, setCorrectAnswers] = useState<number>(0);
   const [questionsAnswered, setQuestionsAnswered] = useState<number>(0);
 
+  const [lastCorrect, setLastCorrect] = useState<boolean | undefined>();
+
   // click handler
   const handleColorButtonClick = (color: string) => {
     // check answer
     if (color === questionColor) {
       // inc score
       setCorrectAnswers((prev) => prev + 1);
+      setLastCorrect(true);
     } else {
-      alert("incorrect");
+      setLastCorrect(false);
     }
-
     setQuestionsAnswered((prev) => prev + 1);
 
     // new question
@@ -39,14 +41,25 @@ const App = () => {
   return (
     <main className="App">
       <header className="header">
-        <h1 style={{ textTransform: "uppercase" }}>Guess the color</h1>
+        <h1 className="header">Guess the color</h1>
         <h2>
           {correctAnswers}
           {" / "}
           {questionsAnswered}
         </h2>
       </header>
-      <div className="colorBox" style={{ backgroundColor: questionColor }} />
+      <div
+        className="colorBox"
+        style={{
+          backgroundColor: questionColor,
+          borderColor:
+            lastCorrect === true
+              ? "green"
+              : lastCorrect === false
+              ? "red"
+              : "null",
+        }}
+      />
       <div className="buttons">
         {randomColors.map((color) => (
           <button

@@ -15,7 +15,11 @@
 .colorBox {
   width: 25rem;
   height: 10rem;
-
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-style: solid;
+  border-width: 4px;
 }
 
 .buttons {
@@ -29,4 +33,9 @@
 
 .colorButton {
   width: 8rem;
+}
+
+.header {
+  text-transform: uppercase;
+  filter:drop-shadow(rgb(0 0 0) 0 1px 2px)
 }
