@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "./App.css";
 import { getRandomHexColors, getRandomIndex } from "./utils";
 
-function App() {
+const App = () => {
   // colors
   const [randomColors, setRandomColors] = useState<string[]>(
     getRandomHexColors(3)
@@ -16,12 +16,14 @@ function App() {
 
   // click handler
   const handleColorButtonClick = (color: string) => {
-    console.log(color);
+    // check answer
     if (color === questionColor) {
+      // inc score
       setCorrectAnswers((prev) => prev + 1);
     } else {
       alert("incorrect");
     }
+
     setQuestionsAnswered((prev) => prev + 1);
 
     // new question
@@ -31,8 +33,8 @@ function App() {
     setQuestionColor(newQuestionColor);
   };
 
-  console.log("Colors:", randomColors);
-  console.log("Question color:", questionColor);
+  // console.log("Colors:", randomColors);
+  // console.log("Question color:", questionColor);
 
   return (
     <main className="App">
@@ -50,6 +52,7 @@ function App() {
           <button
             className="colorButton"
             onClick={() => handleColorButtonClick(color)}
+            key={color}
           >
             {color}
           </button>
@@ -57,6 +60,6 @@ function App() {
       </div>
     </main>
   );
-}
+};
 
 export default App;
